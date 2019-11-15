@@ -1,0 +1,16 @@
+#Creating a Fasta file with C-lectin protein sequence
+##11/15/2019
+##/Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/Introduction to Blast/01_C-lectinGeneFasta
+
+I am creating a Fasta file with the C-lectin protein sequence to later blast against the S. rivoliana genome assemblies
+
+Steps:
+1. Created a new file to input the protein sequence named benediniaGene.Fasta
+  1. vim benediniaGene.fasta
+2. Gave the file a fasta heading - >C-LECTIN and copied the protein sequence into the file
+3. To exit vim
+  1. esc
+  2. :wq
+  3. Enter
+
+This successfully created a Fasta file containing the C-Lectin protein sequence

@@ -1,0 +1,15 @@
+#_Downloading S. riviolana genome assemblies_
+##11/15/2019
+##/Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/Introduction to Blast_00_S.rivolianaGenomeAssemblies
+
+My goal is to download and unzip the S. riviolana genome assemblies
+
+Steps:
+1. Used the following command to download genome
+  1. curl ftp://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/002/994/505/GCA_002994505.1_ASM299450v1/GCA_002994505.1_ASM299450v1_genomic.fna.gz
+2. Previous command did not work so I downloaded the genome by putting the link into a browser window and downloading to the Introduction to Blast - Practice Example folder
+  1. I named this file S.rivolianaGenomeAssemblies.gz
+3. I then unzipped this file using the following command
+  1. gunzip S.rivolianaGenomeAssemblies.gz
+
+This procedure provided me with an unzipped file containing the S. rivoliana genome assemblies

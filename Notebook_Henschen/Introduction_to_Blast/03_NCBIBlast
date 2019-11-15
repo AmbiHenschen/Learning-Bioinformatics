@@ -1,0 +1,19 @@
+#Installing NCBI BLAST+ package
+##11/15/2019
+##/Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/03_NCBIBlast
+
+
+I am installing the BLAST+ package so that I can run BLAST commands on my command line following the instructions found at https://www.ncbi.nlm.nih.gov/books/NBK52640/.
+
+
+Steps:
+1. Downloaded BLAST+ executable file from ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/.
+  1. ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.9.0+-x64-macosx.tar.gz
+2. Installed package
+  1. tar zxvpf ncbi-blast-2.9.0+-x64-macosx.tar.gz
+3. Configured installed package
+  1. export PATH=$PATH:/Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/03_NCBIBlast/bin
+
+This process has installed and configured the BLAST+ package so I can use the BLAST commands locally.
+
+Note: Be sure to name files and folders using appropriate formats. No spaces or special characters except underscores.

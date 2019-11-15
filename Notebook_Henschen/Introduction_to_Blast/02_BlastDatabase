@@ -1,0 +1,14 @@
+#Creating a DNA Blast database of S. rivoliana genome assemblies
+##11/15/2019
+##/Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/02_BlastDatabase
+
+I am creating a blast data of the S. rivoliana genome assemblies that can be used to map nucleotide and protein sequences
+
+Steps:
+1. Use the makeblastdb command to create the database.
+  1. makeblastdb -in 00_S.rivolianaGenomeAssemblies -dbtype nucl -input_type fasta -out SerRivdb
+2.  Output: -bash: makeblastdb: command not found
+
+
+
+Because the makeblastdb command is not recognized by my computer I will now install the NCBI BLAST+ package. See 03_NCBIBlast for details. 

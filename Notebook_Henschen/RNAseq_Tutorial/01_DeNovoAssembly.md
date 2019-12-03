@@ -6,7 +6,7 @@
 
 The goal of this tutorial is to  create a de novo transcriptome assembly using RNAseq data. This tutorial uses the assembler Trinity.
 
-Download raw data
+Download raw data if  you haven't already
 ```
 # download raw data, this data is from the ENA and is RNAseq data from A. thaliana
 # Download SRA files from ENA website (Note: this step is slow)
@@ -16,6 +16,12 @@ wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/004/SRR4420294/SRR4420294_1.fastq
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/004/SRR4420294/SRR4420294_2.fastq.gz
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/005/SRR4420295/SRR4420295_1.fastq.gz
 wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/005/SRR4420295/SRR4420295_2.fastq.gz
+wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/006/SRR4420296/SRR4420296_1.fastq.gz
+wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/006/SRR4420296/SRR4420296_2.fastq.gz
+wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/007/SRR4420297/SRR4420297_1.fastq.gz
+wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/007/SRR4420297/SRR4420297_2.fastq.gz
+wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/008/SRR4420298/SRR4420298_1.fastq.gz
+wget ftp://ftp.sra.ebi.ac.uk/vol1/fastq/SRR442/008/SRR4420298/SRR4420298_2.fastq.gz
 ```
 
 ```
@@ -120,13 +126,12 @@ done
 date
 
 # Trinity requires that the each set of reads are concatenated into a file each. make combined left and right reads.
-Change directory back before this step???
-cat /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/*_1.fastqc.gz > left_1.gz
-cat /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/*_2.fastqc.gz > right_2.gz
+cat /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/*_1.fastq.gz > left_1.gz
+cat /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/*_2.fastq.gz > right_2.gz
 
 # running Trinity after mounting our working directory inside the container using $PWD.
 
-singularity exec --bind $PWD trinityrnaseq.v2.8.6.simg Trinity --seqType fq --max_memory 500G --group_pairs_distance 1000 --min_kmer_cov 2 --CPU 32  --output TrinityOut --left left_1.gz --right right_2.gz --trimmomatic
+singularity exec --bind $PWD trinityrnaseq.v2.8.6.simg Trinity --seqType fq --max_memory 120G --group_pairs_distance 1000 --min_kmer_cov 2 --CPU 32  --output TrinityOut --left left_1.gz --right right_2.gz --trimmomatic
 
 
 RC=1
@@ -139,3 +144,18 @@ done
 date
 scontrol show job $SLURM_JOB_ID
 ```
+
+Create a text file for submission and copy and paste script into this file
+```
+nano trinityARTH.sub
+```
+
+Submit job
+```
+sbatch trinityARTH.sub
+```
+
+Can check on the progress of current jobs, will also receive update emails
+```
+squeue -u henschen
+````

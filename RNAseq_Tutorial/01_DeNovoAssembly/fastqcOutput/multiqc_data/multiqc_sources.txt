@@ -1,0 +1,7 @@
+Module	Section	Sample Name	Source
+FastQC	all_sections	SRR4420295_2	/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/fastqcOutput/SRR4420295_2_fastqc.zip
+FastQC	all_sections	SRR4420294_2	/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/fastqcOutput/SRR4420294_2_fastqc.zip
+FastQC	all_sections	SRR4420293_2	/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/fastqcOutput/SRR4420293_2_fastqc.zip
+FastQC	all_sections	SRR4420293_1	/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/fastqcOutput/SRR4420293_1_fastqc.zip
+FastQC	all_sections	SRR4420295_1	/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/fastqcOutput/SRR4420295_1_fastqc.zip
+FastQC	all_sections	SRR4420294_1	/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/fastqcOutput/SRR4420294_1_fastqc.zip

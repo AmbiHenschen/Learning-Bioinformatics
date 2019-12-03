@@ -7,12 +7,17 @@ I am installing the BLAST+ package so that I can run BLAST commands on my comman
 
 
 Steps:
-1. Downloaded BLAST+ executable file from ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/.
-  1. ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.9.0+-x64-macosx.tar.gz
-2. Installed package
-  1. tar zxvpf ncbi-blast-2.9.0+-x64-macosx.tar.gz
-3. Configured installed package
-  1. export PATH=$PATH:/Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/03_NCBIBlast/bin
+
+```
+#Downloaded BLAST+ executable file from ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/.
+ftp://ftp.ncbi.nlm.nih.gov/blast/executables/LATEST/ncbi-blast-2.9.0+-x64-macosx.tar.gz
+
+#Installed package
+tar zxvpf ncbi-blast-2.9.0+-x64-macosx.tar.gz
+
+#Configured installed package
+export PATH=$PATH:/Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/03_NCBIBlast/bin
+```
 
 This process has installed and configured the BLAST+ package so I can use the BLAST commands locally.
 

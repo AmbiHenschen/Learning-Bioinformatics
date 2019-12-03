@@ -5,9 +5,10 @@
 I am creating a blast database of the S. rivoliana genome assemblies.
 I am working in the 00_S.rivolianaGenomeAssemblies folder because this is where the S.rivolianaGenomeAssemblies file is located.
 
-Steps:
-1. Create a database using the following code:
-  1. makeblastdb -in S.rivolianaGenomeAssemblies -dbtype nucl -input_type fasta -out SerRivdb
+
+```
+#Create a database using the following code:
+makeblastdb -in S.rivolianaGenomeAssemblies -dbtype nucl -input_type fasta -out SerRivdb
   2. Output:
     1. Building a new DB, current time: 11/15/2019 12:20:36
 New DB name:   /Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/00_S.rivolianaGenomeAssemblies/SerRivdb

@@ -159,3 +159,64 @@ Can check on the progress of current jobs, will also receive update emails
 ```
 squeue -u henschen
 ````
+
+ ### Output
+Previous Trinity script resulted in error due to read names (example: SRR4420293.1 HWI-ST1136:361:HS250:1:1101:1130:2234/1)
+"Error, not recognizing read name formatting: [SRR4420293.1]""
+
+
+### Updated SLURM Trinity script
+```
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p short_1node
+#SBATCH --ntasks-per-node=16 # For Trinity always reserve the whole node
+#SBATCH -t 96:00:00
+#SBATCH -J trinity
+#SBATCH -o trinityARTH.o%j
+#SBATCH -e trinityARTH.e%j
+#SBATCH --mail-user=henschen@iastate.edu
+#SBATCH --mail-type=begin
+#SBATCH --mail-type=end
+
+cd $SLURM_SUBMIT_DIR
+ulimit -s unlimited
+
+
+# load modules
+module load singularity
+
+# sync data
+cd ${TMPDIR}
+RC=1
+date
+while [[ $RC -ne 0 ]]; do
+rsync -rvts --exclude=log $SLURM_SUBMIT_DIR/ $TMPDIR/
+RC=$?
+sleep 10
+done
+date
+
+# Trinity requires that the each set of reads are concatenated into a file each. make combined left and right reads.
+cat /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/*_1.fastq.gz > left_1.gz
+cat /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/*_2.fastq.gz > right_2.gz
+
+# rename each run in the left_1.gz and right_2.gz files so they do not include SRR*
+zcat left_1.gz | perl -pe 's/SRR.*\.[0-9]+ //' | gzip > left_1a.gz &
+zcat right_2.gz | perl -pe 's/SRR.*\.[0-9]+ //' | gzip > right_2a.gz &
+
+# running Trinity after mounting our working directory inside the container using $PWD.
+
+singularity exec --bind $PWD trinityrnaseq.v2.8.6.simg Trinity --seqType fq --max_memory 120G --group_pairs_distance 1000 --min_kmer_cov 2 --CPU 32  --output TrinityOut --left left_1a.gz --right right_2a.gz --trimmomatic
+
+
+RC=1
+date
+while [[ $RC -ne 0 ]]; do
+rsync -rts $TMPDIR/ $SLURM_SUBMIT_DIR/
+RC=$?
+sleep 10
+done
+date
+scontrol show job $SLURM_JOB_ID
+```

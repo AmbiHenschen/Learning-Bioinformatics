@@ -3,6 +3,8 @@
 
 [Biostar Handbook](https://www.biostarhandbook.com/)
 
+[RNA-Seq Analysis Workshop](https://github.com/trinityrnaseq/RNASeq_Trinity_Tuxedo_Workshop/wiki)
+
 ### List of useful cheatsheets
 
 [Command line](https://www.git-tower.com/blog/command-line-cheat-sheet/)

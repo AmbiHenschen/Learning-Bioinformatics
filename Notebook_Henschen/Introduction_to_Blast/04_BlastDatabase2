@@ -2,46 +2,58 @@
 ##11/15/2019
 ##/Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/00_S.rivolianaGenomeAssemblies
 
-I am creating a blast database of the S. rivoliana genome assemblies.
-I am working in the 00_S.rivolianaGenomeAssemblies folder because this is where the S.rivolianaGenomeAssemblies file is located.
 
 
+
+Create a blast database
 ```
-#Create a database using the following code:
 makeblastdb -in S.rivolianaGenomeAssemblies -dbtype nucl -input_type fasta -out SerRivdb
-  2. Output:
-    1. Building a new DB, current time: 11/15/2019 12:20:36
+```
+Output: Building a new DB, current time: 11/15/2019 12:20:36
 New DB name:   /Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/00_S.rivolianaGenomeAssemblies/SerRivdb
 New DB title:  S.rivolianaGenomeAssemblies
 Sequence type: Nucleotide
 Keep MBits: T
 Maximum file size: 1000000000B
 Adding sequences from FASTA; added 1343 sequences in 10.2362 seconds.
-2. Step 1 created three new files
+
+New files
   1. SerRivdb.nhr
   2. SerRivdb.nin
   3. SerRivdb.nsq
-3. I moved these three files into a new folder
-  1. 04_BlastDatabase2
+
+Move these files to appropriate directory
+```
+mv SerRivdb.nhr SerRivdb.nin SerRivdb.nsq /Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/04_BlastDatabase2
+```
+
+copy benediniaGene.fasta file to appropriate directory
+```
+cp benediniaGene.fasta /Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/04_BlastDatabase2
+```
+
+change working directory
+```
+cd  /Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/04_BlastDatabase2
+```
+
+Blast the C-lectin protein sequence and put the output into a new file, blastout.txt
+```
+tblastn -db SerRivdb -query benediniaGene.fasta  -out blastout.txt
+```
+
+Use nano to look at new file
+```
+nano blastout.txt
+```
 
 
-  I now have my Blast database in the appropriate file so I will change my working directory to
-  /Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/04_BlastDatabase2
+Create a second file, blastout2.txt, with out specific outputs
+```
+tblastn -db SerRivdb -query benediniaGene.fasta  -outfmt '6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qcovs salltitles' -num_threads 16 -out blastout2  .txt
+```
 
-Steps:
-1. Create a soft link to the benediniaGene.fasta file
-  1. ln -s ../benediniaGene.fasta
-  2. Would this have worked for creating the blast database by soft linking the S.rivolianaGenomeAssemblies file?
-2. Creating a soft link did not work as I am getting an error saying that the benediniaGene.fasta file is not accessible.
-  1. Why does this not work???
-3. To make the benediniaGene.fasta file accessible I made a copy of it in the 04_BlastDatabase2 folder.
-  1. Working directory for this action: /Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/01_ClectinGeneFasta
-  2. Code: cp benediniaGene.fasta /Users/amberleighhenschen/GithubRepos/Learning-Bioinformatics/IntroductionToBlast/04_BlastDatabase2
-4. Blasted the C-lectin protein sequence and put the output into a new file, blastout.txt
-  1. tblastn -db SerRivdb -query benediniaGene.fasta  -out blastout.txt
-5. Used nano to look at new file
-  1. nano blastout.txt
-6. Created a second file, blastout2.txt, with out specific outputs
-  1. tblastn -db SerRivdb -query benediniaGene.fasta  -outfmt '6 qseqid sseqid pident length mismatch gapopen qstart qend sstart send evalue bitscore qcovs salltitles' -num_threads 16 -out blastout2  .txt
-7. Used more command to filter only results that have at least 50% identity with our protein sequences
-  1. more blastout2.txt  | awk '$3>50'
+Filter only results that have at least 50% identity with our protein sequences
+```
+more blastout2.txt  | awk '$3>50'
+```

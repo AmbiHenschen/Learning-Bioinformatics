@@ -33,7 +33,7 @@ module load singularity
 
 # running RSEM after mounting our working directory inside the container using $PWD.
 
-singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/left_1a.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/right_2a.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir1 
+singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/left_1a.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/right_2a.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir1
 
 
 scontrol show job $SLURM_JOB_ID
@@ -43,17 +43,26 @@ scontrol show job $SLURM_JOB_ID
 Build a transcript expression matrix for all samples using the abundance_estimates_to_matrix.pl script
 Prefix all the output files with “all” and use the base name of the directory as sample names
 ```
-singularity exec --bind $PWD trinityrnaseq.v2.8.6.simg
+#!/bin/bash
+#SBATCH -N 1
+#SBATCH -p short_1node
+#SBATCH --ntasks-per-node=16
+#SBATCH -t 24:00:00
+#SBATCH -J RSEM
+#SBATCH -o RSEM_ExMat.o%j
+#SBATCH -e RSEM_ExMat.e%j
+#SBATCH --mail-user=henschen@iastate.edu
+#SBATCH --mail-type=begin
+#SBATCH --mail-type=end
 
-/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/abundance_estimates_to_matrix.pl
+cd $SLURM_SUBMIT_DIR
+ulimit -s unlimited
 
---est_method RSEM
 
---name_sample_by_basedir
+# load modules
+module load singularity
 
---gene_trans_map /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta.gene_trans_map
-
---out_prefix all RSEM_9*/*isoforms.results >& matrix1.log&
+singularity exec --bind $PWD trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/abundance_estimates_to_matrix.pl --est_method RSEM --name_sample_by_basedir --gene_trans_map /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta.gene_trans_map --out_prefix all /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/RSEM_dir1/RSEM.isoforms.results
 ```
 
 

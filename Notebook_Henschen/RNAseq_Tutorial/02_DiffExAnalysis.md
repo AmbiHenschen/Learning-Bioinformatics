@@ -33,7 +33,7 @@ module load singularity
 
 # running RSEM after mounting our working directory inside the container using $PWD.
 
-singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/left_1a.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/right_2a.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir1 
+singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/left_1a.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/right_2a.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir1
 
 
 scontrol show job $SLURM_JOB_ID

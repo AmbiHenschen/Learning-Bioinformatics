@@ -33,8 +33,17 @@ module load singularity
 
 # running RSEM after mounting our working directory inside the container using $PWD.
 
-singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/left_1a.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/right_2a.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir1
+singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420293_1.fastq.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420293_2.fastq.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir1
 
+singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420294_1.fastq.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420294_2.fastq.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir2
+
+singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420295_1.fastq.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420295_2.fastq.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir3
+
+singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420296_1.fastq.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420296_2.fastq.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir4
+
+singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420297_1.fastq.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420297_2.fastq.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir5
+
+singularity exec --bind $PWD  trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrnaseq/util/align_and_estimate_abundance.pl  --transcripts /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut/Trinity.fasta --seqType fq --left /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420298_1.fastq.gz --right /work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/SRR4420298_2.fastq.gz --est_method RSEM --aln_method bowtie2 --trinity_mode  --prep_reference --max_ins_size 1000 --output_dir RSEM_dir6
 
 scontrol show job $SLURM_JOB_ID
 ```
@@ -68,7 +77,7 @@ singularity exec --bind $PWD trinityrnaseq.v2.8.6.simg /usr/local/bin/trinityrna
 
 Move output files to local machine
 ```
-rsync rsync -avz -e ssh henschen@condo2017.its.iastate.edu:/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly/TrinityOut
+rsync -avz -e ssh henschen@condo2017.its.iastate.edu:/work/GIF/henschen/Learning_Bioinformatics/RNASeqTutorial/01_DeNovoAssembly
 all.gene.TMM.EXPR.matrix
 all.gene.TPM.not_cross_norm.TMM_info.txt
 all.isoform.TMM.EXPR.matrix
@@ -76,7 +85,7 @@ all.isoform.TPM.not_cross_norm.TMM_info.txt
 all.gene.counts.matrix
 all.gene.TPM.not_cross_norm
 all.isoform.counts.matrix
-all.isoform.TPM.not_cross_norm .
+all.isoform.TPM.not_cross_norm
 ```
 
 Next steps done in Rstudio
